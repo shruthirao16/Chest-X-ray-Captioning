@@ -1,0 +1,71 @@
+# Ignore ML models
+*.h5
+*.keras
+
+
+
+
+# --- Node.js ---
+
+client/node_modules/
+server/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# --- Python ---
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- VS Code ---
+
+.vscode/
+*.code-workspace
+
+# --- OS Files ---
+
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+
+*.log
+
+# --- Environment Files ---
+
+*.env
+.env.local
+.env.production
+.env.development
+
+# --- Model Files (ALLOWED, do NOT ignore) ---
+
+# DO NOT add:
+
+# *.h5
+
+# *.keras
+
+# *.json
+
+# You need them for your server, so they must remain committed.
+
+# --- Images / Uploads ---
+
+images/
+uploads/
+
+# --- Cache ---
+
+.cache/

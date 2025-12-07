@@ -1,0 +1,186 @@
+.model-container {
+  position: relative; 
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: url('../assets/bg4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: 'Segoe UI', sans-serif;
+  padding: 0;
+}
+
+/* BLUR OVERLAY MATCHING HOME PAGE */
+.model-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px) brightness(1.05);
+
+  z-index: 1;
+}
+
+/* Make sure your content stays above the blur */
+.model-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+
+.title {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+
+  color: #151414;                         /* White text */
+  background: rgba(166, 175, 210, 0.65);   /* Soft blue highlight */
+  
+  padding: 14px 28px;                     /* Clean padding */
+  border-radius: 12px;                    /* Smooth edges */
+
+  display: inline-block;                  /* Wraps nicely */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* Soft shadow */
+  backdrop-filter: blur(6px);             /* Glass effect */
+
+  margin-top: 21px;                    /* Space below title */
+}
+
+.page-subtext {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+  /* margin-bottom: 15px; */
+  margin: 12 px;
+  text-align: center;
+  opacity: 0.92;
+  letter-spacing: 0.3px;
+}
+
+.upload-section {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.upload-section button {
+  padding: 10px 18px;
+  background: #6c5ce7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-section button:hover {
+  background: #5843c9;
+}
+
+/* -----------------------------
+   PHASE 1 — CENTER PREVIEW
+-------------------------------*/
+
+.center-view {
+  margin-top: 20px;
+}
+
+.preview-center {
+  max-width: 55%;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.loading-text {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #555;
+  font-style: italic;
+}
+
+/* Before caption is generated: small centered image */
+.small-preview {
+  max-width: 30% !important;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* -----------------------------
+   PHASE 2 — FINAL SLIDE VIEW
+-------------------------------*/
+
+.final-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  margin-top: 30px;
+  animation: fadeIn 0.6s ease;
+}
+
+.final-img {
+  max-width: 42%;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  animation: slideLeft 0.7s ease forwards;
+}
+
+.caption-box {
+  max-width: 42%;
+  background: #f7f7ff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+  opacity: 0;
+  animation: slideRight 0.7s ease 0.2s forwards;
+}
+
+.caption-box h2 {
+  margin-top: 0;
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideRight {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* -----------------------------
+   RESPONSIVE DESIGN
+-------------------------------*/
+
+@media (max-width: 768px) {
+  .final-layout {
+    flex-direction: column;
+  }
+
+  .final-img,
+  .caption-box,
+  .preview-center {
+    max-width: 90%;
+  }
+}

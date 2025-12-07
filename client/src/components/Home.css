@@ -1,0 +1,117 @@
+/* Home.css - clean, modern look to match ModelPage styling */
+
+/* Background gradient */
+.home-wrapper {
+  position: relative;            /* REQUIRED for overlay */
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url('../assets/bg4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: 'Segoe UI', sans-serif;
+  padding: 0;                    /* Remove padding to stop scroll */
+}
+
+/* FIXED: Blur overlay actually works now */
+.home-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px) brightness(1.05);
+
+  z-index: 1;
+}
+
+
+
+/* Center card */
+.home-card {
+  width: 90%;
+  max-width: 700px;
+
+  background: rgba(204, 217, 223, 0.85);
+  padding: 50px 30px;          /* FIX: reduced padding */
+  border-radius: 16px;
+
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+
+  max-height: 80vh;            /* FIX: prevents card from growing too tall */
+  overflow-y: auto; 
+  box-shadow: 0 12px 35px rgba(0,0,0,0.07);
+  animation: fadeUp 0.8s ease;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* Main title */
+.home-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2d3a4a;
+  margin-bottom: 12px;
+}
+
+/* Subtitle */
+.home-subtitle {
+  font-size: 18px;
+  color: #607080;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+/* Additional friendly text */
+.home-smalltext {
+  font-size: 15px;
+  color: #7c8a96;
+  margin-bottom: 35px;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.home-buttons {
+  margin-top: 10px;
+}
+
+.home-btn {
+  padding: 12px 26px;
+  background-color: #7768e8;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  
+  font-size: 17px;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+  box-shadow: 0 8px 18px rgba(108, 92, 231, 0.25);
+}
+
+.home-btn:hover {
+  background-color: #5843c9;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(108, 92, 231, 0.32);
+}
+
+/* Fade animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
