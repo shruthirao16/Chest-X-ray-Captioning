@@ -1,11 +1,11 @@
 flask
 flask-cors
 # tensorflow==2.16.1
-tensorflow==2.15.0
+tensorflow==2.12.0
 numpy
 Pillow
 h5py
-keras==2.15.0
+keras==2.12.0
 opencv-python
 gunicorn
 werkzeug
