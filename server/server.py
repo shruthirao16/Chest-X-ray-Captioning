@@ -24,9 +24,8 @@ except Exception as e:
     print("Error loading disease model:", str(e))
 
 
-# ================================
-# LOAD MODEL 2: CAPTIONING MODEL
-# ================================
+# LOAD MODEL : CAPTIONING MODEL
+
 try:
     caption_model = load_model('indianamodel.keras')
 
@@ -77,9 +76,9 @@ def encode(image):
     return vec.reshape(1, 2048)
 
 
-# ======================================
+
 # CAPTION GENERATION
-# ======================================
+
 def generate_caption(image_features):
     caption = "startseq"
     max_length = 40
@@ -130,9 +129,9 @@ def predict():
         return jsonify({'error': str(e)}), 500
 
 
-# ======================================
-# 2️⃣ IMAGE CAPTIONING ENDPOINT
-# ======================================
+
+# IMAGE CAPTIONING ENDPOINT
+
 @app.route('/predictnlp', methods=['POST'])
 def upload_image():
     try:
@@ -153,5 +152,7 @@ def upload_image():
 # ======================================
 # RUN THE SERVER
 # ======================================
+import os
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
