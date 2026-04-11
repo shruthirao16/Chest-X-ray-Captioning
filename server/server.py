@@ -21,13 +21,14 @@ try:
     disease_model = tf.keras.models.load_model("dlmodel.h5")
     print("Disease model loaded successfully.")
 except Exception as e:
-    print("Error loading disease model:", str(e))
+    # print("Error loading disease model:", str(e))
+    disease_model = None
 
 
 # LOAD MODEL : CAPTIONING MODEL
 
 
-caption_model = load_model('indianamodel.keras')
+caption_model = load_model('indianamodel.keras', compile=False)
 
 # Load tokenizer mappings
 with open('wordtoidx.json', 'r') as f:
