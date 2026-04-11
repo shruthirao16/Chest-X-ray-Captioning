@@ -60,7 +60,10 @@ def load_models():
         caption_model = tf.keras.models.load_model(
             "indianamodel.h5",
             compile=False,
-            safe_mode=False
+            safe_mode=False,
+            custom_objects={
+                "InputLayer": tf.keras.layers.InputLayer
+            }
         )
         
         with open('wordtoidx.json', 'r') as f:
