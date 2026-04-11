@@ -31,22 +31,35 @@ except Exception as e:
 # caption_model = load_model('indianamodel.keras', compile=False)
 # caption_model.save("indianamodel.h5")
 
-caption_model = load_model('indianamodel.h5', compile=False)
+# caption_model = load_model('indianamodel.h5', compile=False)
 
-# Load tokenizer mappings
-with open('wordtoidx.json', 'r') as f:
-    wordtoix = json.load(f)
+# # Load tokenizer mappings
+# with open('wordtoidx.json', 'r') as f:
+#     wordtoix = json.load(f)
 
-with open('idxtoword.json', 'r') as f:
-    ixtoword = json.load(f)
+# with open('idxtoword.json', 'r') as f:
+#     ixtoword = json.load(f)
 
-# Load InceptionV3 encoder
-base_model = InceptionV3(weights='imagenet')
-encoder_model = Model(base_model.input, base_model.layers[-2].output)
+# # Load InceptionV3 encoder
+# base_model = InceptionV3(weights='imagenet')
+# encoder_model = Model(base_model.input, base_model.layers[-2].output)
 
-print("Caption model loaded successfully.")
+# print("Caption model loaded successfully.")
 
+caption_model = None
+encoder_model = None
+
+def load_models():
+    global caption_model, encoder_model
     
+    if caption_model is None:
+        
+        caption_model = load_model("indianamodel.h5", compile=False)
+        
+        base_model = InceptionV3(weights='imagenet')
+        encoder_model = Model(base_model.input, base_model.layers[-2].output)
+
+        print("Models loaded")
 
 
 # ======================================
@@ -139,6 +152,7 @@ def predict():
 @app.route('/predictnlp', methods=['POST'])
 def upload_image():
     try:
+        load_models()
         if 'file' not in request.files:
             return jsonify({'error': 'No file uploaded'}), 400
 
