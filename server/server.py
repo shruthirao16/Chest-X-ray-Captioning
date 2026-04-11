@@ -2,10 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image as keras_image
-from tensorflow.keras.models import load_model
-from keras.models import Model
-from keras.preprocessing.sequence import pad_sequences
-from keras.applications.inception_v3 import InceptionV3, preprocess_input
+
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.applications.inception_v3 import InceptionV3, preprocess_input
+from tensorflow.keras.models import Model
+
 from PIL import Image
 import numpy as np
 import io
@@ -48,14 +49,25 @@ except Exception as e:
 
 caption_model = None
 encoder_model = None
+wordtoix = None
+ixtoword = None
 
 def load_models():
     global caption_model, encoder_model
     
     if caption_model is None:
         
-        caption_model = load_model("indianamodel.h5", compile=False)
+        caption_model = tf.keras.models.load_model(
+            "indianamodel.h5",
+            compile=False
+        )
         
+        with open('wordtoidx.json', 'r') as f:
+            wordtoix = json.load(f)
+
+        with open('idxtoword.json', 'r') as f:
+            ixtoword = json.load(f)
+            
         base_model = InceptionV3(weights='imagenet')
         encoder_model = Model(base_model.input, base_model.layers[-2].output)
 
