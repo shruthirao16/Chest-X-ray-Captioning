@@ -29,6 +29,7 @@ except Exception as e:
 
 
 caption_model = load_model('indianamodel.keras', compile=False)
+caption_model.save("indianamodel.h5")
 
 # Load tokenizer mappings
 with open('wordtoidx.json', 'r') as f:
