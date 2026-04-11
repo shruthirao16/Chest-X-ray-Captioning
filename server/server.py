@@ -26,23 +26,23 @@ except Exception as e:
 
 # LOAD MODEL : CAPTIONING MODEL
 
-try:
-    caption_model = load_model('indianamodel.keras')
 
-    # Load tokenizer mappings
-    with open('wordtoidx.json', 'r') as f:
-        wordtoix = json.load(f)
+caption_model = load_model('indianamodel.keras')
 
-    with open('idxtoword.json', 'r') as f:
-        ixtoword = json.load(f)
+# Load tokenizer mappings
+with open('wordtoidx.json', 'r') as f:
+    wordtoix = json.load(f)
 
-    # Load InceptionV3 encoder
-    base_model = InceptionV3(weights='imagenet')
-    encoder_model = Model(base_model.input, base_model.layers[-2].output)
+with open('idxtoword.json', 'r') as f:
+    ixtoword = json.load(f)
 
-    print("Caption model loaded successfully.")
-except Exception as e:
-    print("Error loading caption model:", str(e))
+# Load InceptionV3 encoder
+base_model = InceptionV3(weights='imagenet')
+encoder_model = Model(base_model.input, base_model.layers[-2].output)
+
+print("Caption model loaded successfully.")
+
+    
 
 
 # ======================================
