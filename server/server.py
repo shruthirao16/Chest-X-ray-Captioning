@@ -18,12 +18,12 @@ CORS(app)
 # ================================
 # LOAD MODEL 1: DISEASE CLASSIFIER
 # ================================
-try:
-    disease_model = tf.keras.models.load_model("dlmodel.h5")
-    print("Disease model loaded successfully.")
-except Exception as e:
-    # print("Error loading disease model:", str(e))
-    disease_model = None
+# try:
+#     disease_model = tf.keras.models.load_model("dlmodel.h5")
+#     print("Disease model loaded successfully.")
+# except Exception as e:
+#     # print("Error loading disease model:", str(e))
+#     disease_model = None
 
 
 # LOAD MODEL : CAPTIONING MODEL
@@ -53,16 +53,19 @@ wordtoix = None
 ixtoword = None
 
 def load_models():
-    global caption_model, encoder_model
+    global caption_model, encoder_model, wordtoix, ixtoword
     
     if caption_model is None:
         
+        def custom_input_layer(**config):
+            config.pop("batch_shape", None)
+            return tf.keras.layers.InputLayer(**config)
+
         caption_model = tf.keras.models.load_model(
             "indianamodel.h5",
             compile=False,
-            safe_mode=False,
             custom_objects={
-                "InputLayer": tf.keras.layers.InputLayer
+                "InputLayer": custom_input_layer
             }
         )
         
