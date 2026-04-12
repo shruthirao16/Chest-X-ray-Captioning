@@ -65,7 +65,8 @@ def load_models():
             "indianamodel.h5",
             compile=False,
             custom_objects={
-                "InputLayer": custom_input_layer
+                "InputLayer": custom_input_layer,
+                "NotEqual": tf.math.not_equal 
             }
         )
         
